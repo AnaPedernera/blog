@@ -50,6 +50,7 @@ class PostsController extends Controller
         $post->titulo = $request->input('titulo');
         $post->contenido = $request->input('contenido');
         $post->user_id = auth()->user()->id;
+        $post->tags()->sync(request('tags'));
         $post->save();
 
         return redirect('/posts')->with("success", "Post Creado Exitosamente");

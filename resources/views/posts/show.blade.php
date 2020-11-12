@@ -1,19 +1,23 @@
 @extends('layouts.app')
 
 @section('content')
-  <div class="container-fluid" >
+  <div class="container" >
     <div class="row" >
       <div class=" col-11 text-center m-5 ">
-        <h2 class="font-weight-bold text-uppercase m-4 text-center">{{$post->titulo}} </h2>
+        <h2 class="font-weight-bold text-uppercase m-4 ">{{$post->titulo}} </h2>
         <p class="m-4 p-5"> {{$post->contenido}} </p>
+      <!-- tags -->
+      <div class=" col-11 text-center m-5 ">
+        @foreach($post->tags as $tag)
+        <span class="border border-darck p-2 rounded  m-3 ">{{$tag->nombre}}</span> <br>
+        @endforeach
+      
+      </div>
       </div>
       <div class="col text-center">
-       
 
-
-
-             @if (!Auth::guest())
-  @if(Auth::user()->id == $post->user_id)
+      @if (!Auth::guest())
+      @if(Auth::user()->id == $post->user_id)
 
         <a class="btn btn-secondary text-decoration-none" href="/posts/{{$post->id}}/edit">Editar entrada...</a>
 

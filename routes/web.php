@@ -1,6 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Models\Tag;
+use App\Models\Post;
+use App\Models\User;
+
 
 
 /*
@@ -13,6 +17,8 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -28,3 +34,6 @@ Route::get('/index', [App\Http\Controllers\PagesController::class, 'index']);
 
 // Genero todas las rutas de las acciones de PostsController
 Route::resource('posts', '\App\Http\Controllers\PostsController');
+// Genero todas las rutas de las acciones de PostsController
+
+Route::resource('tags', '\App\Http\Controllers\TagsController');

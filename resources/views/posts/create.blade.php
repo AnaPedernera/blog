@@ -23,7 +23,7 @@
 
                         {{Form::label('tags','Tags')}}<br>
                             @foreach($tags as $tag)
-                               { !!form::checkbox('tags',$tag->id, false)!!}{{$tag->nombre}}
+                               {!! Form::checkbox('tags',$tag->id, false)!!} {{$tag->nombre}}
                             @endforeach
                         </div>
                            

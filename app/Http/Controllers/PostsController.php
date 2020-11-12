@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Post;
+use App\Models\Tag;
 
 class PostsController extends Controller
 {
@@ -29,8 +30,10 @@ class PostsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
+
     {
-        return view('posts.create');
+      $tags= Tag::all();
+        return view('posts.create' , ["tags" => $tags]);
     }
 
     /**
@@ -50,8 +53,9 @@ class PostsController extends Controller
         $post->titulo = $request->input('titulo');
         $post->contenido = $request->input('contenido');
         $post->user_id = auth()->user()->id;
-        $post->tags()->sync(request('tags'));
         $post->save();
+        $post->tags()->sync(request('tags'));
+        
 
         return redirect('/posts')->with("success", "Post Creado Exitosamente");
     }

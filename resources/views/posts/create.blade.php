@@ -8,7 +8,7 @@
                 <h2 class="font-weight-bold text-uppercase m-5 text-center"> Crear Entrada Blog</h2>
 
                 <div style="max-width:60%; margin-left: auto; margin-right: auto;">
-                    {!! Form::open(['action' => 'App\Http\Controllers\PostsController@store', 'method'=> 'POST']) !!}
+                    {!! Form::open(['action' => 'App\Http\Controllers\PostsController@store', 'method'=> 'POST', 'enctype'=>'multipart/form-data']) !!}
 
                         <div class="form-group">
                             {{Form::label('titulo','Titulo') }}
@@ -18,6 +18,12 @@
                         <div class="form-group">
                             {{Form::label('contenido', 'Contenido' ) }}
                             {{Form::textarea('contenido', '', ['class' => 'form-control', 'placeholder'=>'Ingrese texto de la nueva entrada...']) }}
+                        </div>
+
+                        <div class="form-group">
+
+                        {{Form::file('portada')}}
+                    
                         </div>
                         <div class="form-group">
 

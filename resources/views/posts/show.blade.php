@@ -5,14 +5,17 @@
     <div class="row" >
       <div class=" col-11 text-center m-5 ">
         <h2 class="font-weight-bold text-uppercase m-4 ">{{$post->titulo}} </h2>
+
+         <!-- tags -->
+        <div class=" col-11 text-center m-5 ">
+          @foreach($post->tags as $tag)
+          <span class="border border-darck p-2 rounded  m-3 ">{{$tag->nombre}}</span> <br>
+          @endforeach
+        
+        </div>
         <p class="m-4 p-5"> {{$post->contenido}} </p>
-      <!-- tags -->
-      <div class=" col-11 text-center m-5 ">
-        @foreach($post->tags as $tag)
-        <span class="border border-darck p-2 rounded  m-3 ">{{$tag->nombre}}</span> <br>
-        @endforeach
-      
-      </div>
+     
+      <img class="w-50" src="/storage/portadas/{{$post->path_imagen}}">
       </div>
       <div class="col text-center">
 

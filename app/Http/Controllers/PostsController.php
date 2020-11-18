@@ -47,12 +47,26 @@ class PostsController extends Controller
         $this->validate($request, [
           'titulo' => 'required',
           'contenido' => 'required',
+
         ]);
+
+        if($request->HasFile('portada')){
+
+          $nombre_original = $request->file('portada')->getClientOriginalName();
+          $nombre= pathinfo($nombre_original, PATHINFO_FILENAME);
+          $extension = $request->file('portada')->getClientOriginalExtension();
+          $nombre_a_guardar = $nombre. "_" . time() . "." . $extension;
+          //guardo 
+          $request->file('portada')->storeAs('public/portadas',$nombre_a_guardar);
+        }else{
+          $nombre_a_guardar= "noimage.png";
+        }
 
         $post = new Post();
         $post->titulo = $request->input('titulo');
         $post->contenido = $request->input('contenido');
         $post->user_id = auth()->user()->id;
+        $post->path_imagen = $nombre_a_guardar;
         $post->save();
         $post->tags()->sync(request('tags'));
         
